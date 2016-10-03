@@ -139,8 +139,8 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
   # Default: act=tf.nn.relu
   activations = act(preactivate, 'activation')
   return activations
-
-
+# I should declare some placeholder-variables:
+xvals     = tf.placeholder(tf.float32, shape=[None, fnum_i] , name='x-input')
 
 # tensorflow sess11 should be done for now.
 #
