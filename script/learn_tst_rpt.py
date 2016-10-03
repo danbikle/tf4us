@@ -67,8 +67,6 @@ logr_model.fit(x_train_a, class_train_a)
 predictions_a               = logr_model.predict_proba(x_test_a)[:,1]
 predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 
-
-pdb.set_trace()
 # I should build a TensorFlow model
 import tensorflow as tf
 sess = tf.InteractiveSession()
@@ -97,7 +95,7 @@ cross_entropy = tf.reduce_mean(-tf.reduce_sum(yactual * tf.log(yhat), reduction_
 #train_step    = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
 train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 # Train
-training_steps_i = 77
+training_steps_i = 555
 tf.initialize_all_variables().run()
 for i in range(training_steps_i):
   train_step.run({xvals: x_train_a, yactual: ytrain1h_a})
@@ -106,7 +104,6 @@ prob_a = sess.run(yhat, feed_dict={xvals: x_test_a})
 # I should collect the tf predictions
 predictions_df['tf10'] = prob_a[:,1]
 
-pdb.set_trace()
 # I should create a CSV to report from:
 predictions_df.to_csv('../public/csv/tf4.csv', float_format='%4.6f', index=False)
 
@@ -135,7 +132,7 @@ predictions_df['eff_tf10'] = eff_sr
 eff_tf10_f                 = np.sum(eff_sr)
 print('tf10-Effectiveness:')
 print(eff_tf10_f)
-pdb.set_trace()
+
 # I should use html to report:
 model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']
 eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f]
