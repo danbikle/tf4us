@@ -113,7 +113,7 @@ predictions_df['tf10'] = prob_a[:,1]
 print('sess11 VERY busy ...')
 sess11 = tf.InteractiveSession()
 learning_rate     = 0.001
-training_steps_i  = 2123
+training_steps_i  = 321
 layer1_input_dim  = fnum_i
 layer1_output_dim = label_i
 
