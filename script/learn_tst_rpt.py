@@ -196,6 +196,13 @@ eff_tf10_f                 = np.sum(eff_sr)
 print('tf10-Effectiveness:')
 print(eff_tf10_f)
 
+# I should report tf11-Effectiveness:
+eff_sr     = predictions_df.pctlead * np.sign(predictions_df.tf11 - 0.5)
+predictions_df['eff_tf11'] = eff_sr
+eff_tf11_f                 = np.sum(eff_sr)
+print('tf11-Effectiveness:')
+print(eff_tf11_f)
+
 # I should use html to report:
 model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']
 eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f]
