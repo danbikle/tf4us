@@ -161,7 +161,8 @@ class_test_a  = (y_test_a  > np.mean(y_train_a))
 ytest1h_l = [[0,1] if cl else [1,0] for cl in class_test_a]
 ytest1h_a = np.array(ytest1h_l)
 prob_a = sess11.run(yhat, feed_dict={xvals: x_test_a, yactual: ytest1h_a,  keep_prob: 1.0})
-
+# I should collect the tf predictions
+predictions_df['tf11'] = prob_a[:,1]
 # tensorflow sess11 should be done for now.
 #
 
