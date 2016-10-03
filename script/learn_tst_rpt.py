@@ -51,6 +51,7 @@ linr_model = linear_model.LinearRegression()
 linr_model.fit(x_train_a, y_train_a)
 # Now that I have learned, I should predict:
 x_test_a       = np.array(test_df)[:,3:]
+
 predictions_a  = linr_model.predict(x_test_a)
 predictions_df = test_df.copy()
 predictions_df['pred_linr'] = predictions_a.reshape(len(predictions_a),1)
@@ -61,6 +62,7 @@ logr_model    = linear_model.LogisticRegression()
 # Should I prefer median over mean?:
 # class_train_a = (y_train_a > np.median(y_train_a))
 class_train_a = (y_train_a > np.mean(y_train_a))
+
 # I should learn:
 logr_model.fit(x_train_a, class_train_a)
 # Now that I have learned, I should predict:
@@ -148,8 +150,17 @@ yhat = nn_layer(xvals, layer1_input_dim, layer1_output_dim, 'layer1', act=tf.nn.
 cross_entropy = -tf.reduce_mean(yactual * tf.log(yhat))
 train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 tf.initialize_all_variables().run()
+for i in range(training_steps_i):
+  sess11.run(train_step, feed_dict={xvals: x_train_a, yactual: ytrain1h_a, keep_prob: 1.0})
 
+y_test_a       = np.array(test_df.pctlead)
+# I should use np.mean(y_train_a) here:
+class_test_a  = (y_test_a  > np.mean(y_train_a))
 
+# tf wants class training values to be 1 hot encoded.
+ytest1h_l = [[0,1] if cl else [1,0] for cl in class_test_a]
+ytest1h_a = np.array(ytest1h_l)
+prob_a = sess11.run(yhat, feed_dict={xvals: x_test_a, yactual: ytest1h_a,  keep_prob: 1.0})
 
 # tensorflow sess11 should be done for now.
 #
