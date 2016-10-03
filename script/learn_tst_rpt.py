@@ -98,7 +98,7 @@ cross_entropy = tf.reduce_mean(-tf.reduce_sum(yactual * tf.log(yhat), reduction_
 #train_step    = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
 train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 # Train
-training_steps_i = 555
+training_steps_i = 330
 tf.initialize_all_variables().run()
 for i in range(training_steps_i):
   train_step.run({xvals: x_train_a, yactual: ytrain1h_a})
@@ -113,7 +113,7 @@ predictions_df['tf10'] = prob_a[:,1]
 print('sess11 VERY busy ...')
 sess11 = tf.InteractiveSession()
 learning_rate     = 0.001
-training_steps_i  = 321
+training_steps_i  = 330
 layer1_input_dim  = fnum_i
 layer1_output_dim = label_i
 
@@ -172,7 +172,7 @@ predictions_df['tf11'] = prob_a[:,1]
 print('sess12 VERY busy ...')
 sess12 = tf.InteractiveSession()
 learning_rate     = 0.001
-training_steps_i  = 621
+training_steps_i  = 330
 layer1_input_dim  = fnum_i
 layer1_output_dim = fnum_i
 layer2_input_dim  = fnum_i
