@@ -80,13 +80,11 @@ class_train1h_l = [[0,1] if cl else [1,0] for cl in class_train_a]
 ytrain1h_a = np.array(class_train1h_l)
 learning_rate   = 0.001
 
-
 # I declare 2d Tensors.
 # I should use 0th row of x_train_a to help shape xvals:
 fnum_i  = len(x_train_a[0, :])
 label_i = len(ytrain1h_a[0,:]) # Should usually be 2.
 
-print(str(yr)+' VERY Busy...')
 xvals = tf.placeholder(tf.float32, shape=[None, fnum_i], name='x-input')
 weight1 = tf.Variable(tf.zeros([fnum_i, label_i]))
 weight0 = tf.Variable(tf.zeros([label_i]))
@@ -104,8 +102,7 @@ tf.initialize_all_variables().run()
 for i in range(training_steps_i):
   train_step.run({xvals: x_train_a, yactual: ytrain1h_a})
 prob_a = sess.run(yhat, feed_dict={xvals: x_test_a})
-
-
+# tensorflow should be done for now.
 
 pdb.set_trace()
 # I should create a CSV to report from:
