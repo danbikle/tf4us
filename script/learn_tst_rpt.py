@@ -67,6 +67,17 @@ logr_model.fit(x_train_a, class_train_a)
 predictions_a               = logr_model.predict_proba(x_test_a)[:,1]
 predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 
+
+pdb.set_trace()
+# I should build a TensorFlow model
+import tensorflow as tf
+sess = tf.InteractiveSession()
+
+# tf wants class training values to be 1 hot encoded.
+class_train1h_l = [[0,1] if cl else [1,0] for cl in class_train_a]
+class_train1h_a = np.array(class_train1h_l)
+
+pdb.set_trace()
 # I should create a CSV to report from:
 predictions_df.to_csv('../public/csv/tf4.csv', float_format='%4.6f', index=False)
 
