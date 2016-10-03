@@ -141,6 +141,12 @@ def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
   return activations
 # I should declare some placeholder-variables:
 xvals     = tf.placeholder(tf.float32, shape=[None, fnum_i] , name='x-input')
+yactual   = tf.placeholder(tf.float32, shape=[None, label_i], name='y-input')
+keep_prob = tf.placeholder(tf.float32, name='probability2keep-not-drop')
+yhat = nn_layer(xvals, layer1_input_dim, layer1_output_dim, 'layer1', act=tf.nn.softmax)
+
+cross_entropy = -tf.reduce_mean(yactual * tf.log(yhat))
+train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 
 # tensorflow sess11 should be done for now.
 #
