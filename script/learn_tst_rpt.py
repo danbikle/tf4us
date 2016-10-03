@@ -115,6 +115,31 @@ training_steps_i  = 2123
 layer1_input_dim  = fnum_i
 layer1_output_dim = label_i
 
+# We can't initialize these variables to 0 - the network will get stuck.
+def weight_variable(shape):
+  """Create a weight variable with appropriate initialization."""
+  initial = tf.truncated_normal(shape, stddev=0.1)
+  return tf.Variable(initial)
+
+def bias_variable(shape):
+  initial = tf.constant(0.1, shape=shape)
+  return tf.Variable(initial)
+
+def nn_layer(input_tensor, input_dim, output_dim, layer_name, act=tf.nn.relu):
+  """Reusable code for making a simple neural net layer.
+  It does a matrix multiply, bias add, and then uses relu to nonlinearize.
+  And adds a number of summary ops.
+  """
+  # layer_name should be used in later version.
+  # I should hold the state of the weights for the layer.
+  weights     = weight_variable([input_dim, output_dim])
+  biases      = bias_variable([output_dim])    
+  preactivate = tf.matmul(input_tensor, weights) + biases
+  # I should use act() passed in via arg.
+  # Default: act=tf.nn.relu
+  activations = act(preactivate, 'activation')
+  return activations
+
 
 
 # tensorflow sess11 should be done for now.
