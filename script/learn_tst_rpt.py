@@ -147,6 +147,9 @@ yhat = nn_layer(xvals, layer1_input_dim, layer1_output_dim, 'layer1', act=tf.nn.
 
 cross_entropy = -tf.reduce_mean(yactual * tf.log(yhat))
 train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
+tf.initialize_all_variables().run()
+
+
 
 # tensorflow sess11 should be done for now.
 #
