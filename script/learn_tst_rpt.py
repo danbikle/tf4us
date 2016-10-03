@@ -103,6 +103,8 @@ for i in range(training_steps_i):
   train_step.run({xvals: x_train_a, yactual: ytrain1h_a})
 prob_a = sess.run(yhat, feed_dict={xvals: x_test_a})
 # tensorflow should be done for now.
+# I should collect the tf predictions
+predictions_df['tf10'] = prob_a[:,1]
 
 pdb.set_trace()
 # I should create a CSV to report from:
@@ -127,6 +129,13 @@ eff_logr_f                 = np.sum(eff_sr)
 print('Logistic-Regression-Effectiveness:')
 print(eff_logr_f)
 
+# I should report tf10-Effectiveness:
+eff_sr     = predictions_df.pctlead * np.sign(predictions_df.tf10 - 0.5)
+predictions_df['eff_tf10'] = eff_sr
+eff_tf10_f                 = np.sum(eff_sr)
+print('tf10-Effectiveness:')
+print(eff_tf10_f)
+pdb.set_trace()
 # I should use html to report:
 model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']
 eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f]
