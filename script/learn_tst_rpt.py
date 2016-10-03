@@ -67,9 +67,10 @@ logr_model.fit(x_train_a, class_train_a)
 predictions_a               = logr_model.predict_proba(x_test_a)[:,1]
 predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 
+#
 # I should build a TensorFlow model
 import tensorflow as tf
-sess = tf.InteractiveSession()
+sess10 = tf.InteractiveSession()
 
 # tf wants class training values to be 1 hot encoded.
 class_train1h_l = [[0,1] if cl else [1,0] for cl in class_train_a]
@@ -99,10 +100,26 @@ training_steps_i = 555
 tf.initialize_all_variables().run()
 for i in range(training_steps_i):
   train_step.run({xvals: x_train_a, yactual: ytrain1h_a})
-prob_a = sess.run(yhat, feed_dict={xvals: x_test_a})
-# tensorflow should be done for now.
+prob_a = sess10.run(yhat, feed_dict={xvals: x_test_a})
 # I should collect the tf predictions
 predictions_df['tf10'] = prob_a[:,1]
+# tensorflow sess10 should be done for now.
+#
+
+#
+# I should build a TensorFlow model
+print('sess11 VERY busy ...')
+sess11 = tf.InteractiveSession()
+learning_rate     = 0.001
+training_steps_i  = 2123
+layer1_input_dim  = fnum_i
+layer1_output_dim = label_i
+
+
+
+# tensorflow sess11 should be done for now.
+#
+
 
 # I should create a CSV to report from:
 predictions_df.to_csv('../public/csv/tf4.csv', float_format='%4.6f', index=False)
