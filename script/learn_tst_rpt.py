@@ -167,6 +167,45 @@ predictions_df['tf11'] = prob_a[:,1]
 #
 
 
+#
+# I should build a TensorFlow model
+print('sess12 VERY busy ...')
+sess12 = tf.InteractiveSession()
+learning_rate     = 0.001
+training_steps_i  = 621
+layer1_input_dim  = fnum_i
+layer1_output_dim = fnum_i
+layer2_input_dim  = fnum_i
+layer2_output_dim = label_i
+
+# I should declare some placeholder-variables:
+xvals     = tf.placeholder(tf.float32, shape=[None, fnum_i] , name='x-input')
+yactual   = tf.placeholder(tf.float32, shape=[None, label_i], name='y-input')
+keep_prob = tf.placeholder(tf.float32, name='probability2keep-not-drop')
+layer1output = nn_layer(xvals, layer1_input_dim, layer1_output_dim, 'layer1', act=tf.nn.relu  )
+dropped_output = tf.nn.dropout(layer1output, keep_prob)
+
+yhat = nn_layer(dropped_output, layer2_input_dim, layer2_output_dim, 'layer2', act=tf.nn.softmax)
+
+cross_entropy = -tf.reduce_mean(yactual * tf.log(yhat))
+train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
+tf.initialize_all_variables().run()
+for i in range(training_steps_i):
+  sess12.run(train_step, feed_dict={xvals: x_train_a, yactual: ytrain1h_a, keep_prob: 0.9})
+
+y_test_a     = np.array(test_df.pctlead)
+# I should use np.mean(y_train_a) here:
+class_test_a = (y_test_a  > np.mean(y_train_a))
+
+# tf wants class training values to be 1 hot encoded.
+ytest1h_l = [[0,1] if cl else [1,0] for cl in class_test_a]
+ytest1h_a = np.array(ytest1h_l)
+prob_a = sess12.run(yhat, feed_dict={xvals: x_test_a, yactual: ytest1h_a,  keep_prob: 1.0})
+# I should collect the tf predictions
+predictions_df['tf12'] = prob_a[:,1]
+# tensorflow sess12 should be done for now.
+#
+
 # I should create a CSV to report from:
 predictions_df.to_csv('../public/csv/tf4.csv', float_format='%4.6f', index=False)
 
@@ -202,6 +241,13 @@ predictions_df['eff_tf11'] = eff_sr
 eff_tf11_f                 = np.sum(eff_sr)
 print('tf11-Effectiveness:')
 print(eff_tf11_f)
+
+# I should report tf12-Effectiveness:
+eff_sr     = predictions_df.pctlead * np.sign(predictions_df.tf12 - 0.5)
+predictions_df['eff_tf12'] = eff_sr
+eff_tf12_f                 = np.sum(eff_sr)
+print('tf12-Effectiveness:')
+print(eff_tf12_f)
 
 # I should use html to report:
 model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']

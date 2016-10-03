@@ -45,11 +45,17 @@ eff_sr     = bt_df.pctlead * np.sign(bt_df.tf11 - 0.5)
 bt_df['eff_tf11'] = eff_sr
 eff_tf11_f        = np.sum(eff_sr)
 
+# I should report tf12-Effectiveness:
+eff_sr     = bt_df.pctlead * np.sign(bt_df.tf12 - 0.5)
+bt_df['eff_tf12'] = eff_sr
+eff_tf12_f        = np.sum(eff_sr)
+
 print('csv_in: '+csv_in)
 print('Long-Only-Effectiveness: '          +str(eff_lo_f))
 print('Linear-Regression-Effectiveness: '  +str(eff_linr_f))
 print('Logistic-Regression-Effectiveness: '+str(eff_logr_f))
 print('tf10-Effectiveness: '+str(eff_tf10_f))
 print('tf11-Effectiveness: '+str(eff_tf11_f))
+print('tf12-Effectiveness: '+str(eff_tf12_f))
 
 'bye'
