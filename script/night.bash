@@ -27,9 +27,9 @@ echo cdate,cp                                                              > ~/t
 sort ~/tf4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/tf4us/public/csv/gspc2.csv
 
 # I should compute features from the prices:
-~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
+python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 
 # I should learn, test, and report:
-~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
+python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
 
 exit
