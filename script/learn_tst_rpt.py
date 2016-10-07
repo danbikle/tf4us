@@ -7,7 +7,7 @@
 # Next it should report effectiveness of the models.
 
 # Demo:
-# ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2000
+# python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2000
 
 # Above demo will train from years 1985 through 2014 and predict each day of 2000
 
@@ -20,7 +20,7 @@ import sys
 if (len(sys.argv) != 3):
   print('You typed something wrong:')
   print('Demo:')
-  print("~/anaconda3/bin/python genf.py TRAINSIZE=30 TESTYEAR=2015")
+  print("python genf.py TRAINSIZE=30 TESTYEAR=2015")
   sys.exit()
 
 # I should get cmd line args:

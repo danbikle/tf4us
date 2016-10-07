@@ -1,7 +1,7 @@
 # genf.py
 
 # Demo:
-# ~/anaconda3/bin/python genf.py SLOPES='[3,4,5,6,7,8,9]'
+# python genf.py SLOPES='[3,4,5,6,7,8,9]'
 
 # This script should generate a CSV file full of feature data
 # from GSPC prices from Yahoo.
@@ -20,14 +20,14 @@ import sys
 if (len(sys.argv) != 2):
   print('You typed something wrong:')
   print('Demo:')
-  print("~/anaconda3/bin/python genf.py SLOPES='[3,4,5,6,7,8,9]'")
+  print("python genf.py SLOPES='[3,4,5,6,7,8,9]'")
   sys.exit()
 arg1_l = sys.argv[1].split('=')
 if (arg1_l[0] != 'SLOPES'):
   print('Problem:')
   print('I cannot determine SLOPES from your command line.')
   print('Demo:')
-  print("~/anaconda3/bin/python genf.py SLOPES='[3,4,5,6,7,8,9]'")
+  print("python genf.py SLOPES='[3,4,5,6,7,8,9]'")
   sys.exit()
 
 # I should get integers from arg1_l:
