@@ -20,7 +20,7 @@ cd ~/tf4us/script/
 mkdir -p ~/tf4us/public/csv/
 
 # I should get prices from Yahoo:
-## debug /usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > ~/tf4us/public/csv/gspc.csv
+/usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > ~/tf4us/public/csv/gspc.csv
 
 # I should extract two columns and also sort:
 echo cdate,cp                                                              > ~/tf4us/public/csv/gspc2.csv
