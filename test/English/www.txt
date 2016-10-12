@@ -1,0 +1,3 @@
+www.txt
+
+Given that I load tf4.us, DNS should redirect me to www.tf4.us

@@ -1,0 +1,3 @@
+favicon.txt
+
+tf4.us should use a favicon.ico which is an orange T.
