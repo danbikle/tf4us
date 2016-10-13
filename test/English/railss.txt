@@ -1,0 +1,8 @@
+railss.txt
+
+Given that I am an admin
+When I type script/railss.bash
+The webserver should start
+The webserver should listen on all interfaces
+The webserver should listen on port 1840
+
