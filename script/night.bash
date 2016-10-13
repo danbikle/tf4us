@@ -14,19 +14,21 @@
 # If you have questions, e-me: bikle101@gmail.com
 
 # I should cd to the right place:
-cd ~/tf4us/script/
-
+# cd ~/tf4us/script/
+export TF4US=`dirname $0`/../
+cd    $TF4US
 # I should create a folder to hold CSV data:
-mkdir -p ~/tf4us/public/csv/
-
+mkdir -p public/csv/
+cd       public/csv/
 # I should get prices from Yahoo:
-/usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > ~/tf4us/public/csv/gspc.csv
+/usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > gspc.csv
 
 # I should extract two columns and also sort:
-echo cdate,cp                                                              > ~/tf4us/public/csv/gspc2.csv
-sort ~/tf4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/tf4us/public/csv/gspc2.csv
+echo cdate,cp                                                              > gspc2.csv
+sort ~/tf4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> gspc2.csv
 
 # I should compute features from the prices:
+cd $TF4US/script/
 python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 
 # I should learn, test, and report:
