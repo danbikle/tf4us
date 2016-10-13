@@ -15,8 +15,8 @@
 
 # I should cd to the right place:
 # cd ~/tf4us/script/
-export TF4US=`dirname $0`/../
-cd    $TF4US
+cd `dirname $0`/../
+export TF4US=`pwd`
 # I should create a folder to hold CSV data:
 mkdir -p public/csv/
 cd       public/csv/
