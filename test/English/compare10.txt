@@ -1,0 +1,12 @@
+compare10.txt
+
+Given that I load /pages/compare
+I should see title:
+Comparison of Long Only, Linear Regression, Logistic Regression, scikit-learn, and TensorFlow.
+The data from scikit-learn should come from:
+  - linear_model.LinearRegression()
+  - linear_model.LogisticRegression()
+The data from TensorFlow should come from:
+  - script/learn_tst_rpt.py
+which is a simple script full of some TensorFlow API calls.
+
