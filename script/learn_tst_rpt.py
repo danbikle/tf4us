@@ -250,8 +250,8 @@ print('tf12-Effectiveness:')
 print(eff_tf12_f)
 
 # I should use html to report:
-model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']
-eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f]
+model_l = ['Long Only', 'Linear Regression', 'Logistic Regression', 'tf10','tf11','tf12']
+eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f, eff_tf10_f, eff_tf11_f, eff_tf12_f]
 
 rpt_df                  = pd.DataFrame(model_l)
 rpt_df.columns          = ['model']
