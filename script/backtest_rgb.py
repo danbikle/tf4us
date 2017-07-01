@@ -48,6 +48,15 @@ for row_i in range(len_i):
   logr_l.append(logr_l[row_i]+logr_delt)
 rgb0_df['Logistic Regression'] = logr_l[:-1]
 
+# I should create effectiveness-line for tf10 predictions.
+pred_tf10_l = [tf10 for tf10 in bt_df.tf10]
+tf10_l      = [blue_l[0]]
+for row_i in range(len_i):
+  blue_delt = blue_l[row_i+1]-blue_l[row_i]
+  tf10_delt = np.sign(pred_tf10_l[row_i]-0.5) * blue_delt
+  tf10_l.append(tf10_l[row_i]+tf10_delt)
+rgb0_df['TensorFlow'] = tf10_l[:-1]
+
 import matplotlib
 matplotlib.use('Agg')
 # Order is important here.

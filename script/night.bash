@@ -1,5 +1,10 @@
 #!/bin/bash
 
+echo yahoo shutdown ichart so I dont run this script anymore.
+
+exit
+#!/bin/bash
+
 # ~/tf4us/script/night.bash
 
 # I should run this script at 8pm Calif-time.

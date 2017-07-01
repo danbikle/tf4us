@@ -13,7 +13,7 @@ cd ~/tf4us/script/
 mkdir -p ~/tf4us/public/csv/
 
 # I should get prices from Yahoo:
-/usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > ~/tf4us/public/csv/gspc.csv
+/usr/bin/curl -L ml4.us/csv/GSPC.csv > ~/tf4us/public/csv/gspc.csv
 
 # I should extract two columns and also sort:
 echo cdate,cp                                                              > ~/tf4us/public/csv/gspc2.csv
@@ -21,15 +21,16 @@ sort ~/tf4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/tf
 
 # I should compute features from the prices:
 python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
+
 rm -f /tmp/learn_tst_rpt.py.txt
 rm -f ../public/csv/backtest_*csv
 rm -f ../public/backtest_$yr.png
-thisyr=`date +%Y`
-for (( yr=2000; yr<=${thisyr}; yr++ ))
+thisyr=`date +%Y` # Maybe use this later
+for (( yr=2000; yr<=2017; yr++ ))
 do
     echo Busy...
-    echo backtesting: $yr                                             >> /tmp/learn_tst_rpt.py.txt
-    python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=$yr >> /tmp/learn_tst_rpt.py.txt 2>&1
+    echo backtesting: $yr                             #>> /tmp/learn_tst_rpt.py.txt
+    python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=$yr #>> /tmp/learn_tst_rpt.py.txt 2>&1
     mv ../public/csv/tf4.csv ../public/csv/backtest_$yr.csv
     mv ../public/rgb.png ../public/backtest_$yr.png
     python backtest_rpt.py ../public/csv/backtest_${yr}.csv > /tmp/backtest_rpt_${yr}.py.txt 2>&1
@@ -41,8 +42,10 @@ cp /tmp/backtest_all.csv ../public/csv/
 python backtest_rpt.py ../public/csv/backtest_all.csv
 python backtest_rgb.py ../public/csv/backtest_all.csv
 
-# backtest.bash clobbers data created by night.bash
-# I should fix that:
+# yahoo ichart is gone so I should:
+exit 
+
+# When yahoo gave us ichart I would run:
 ./night.bash
 
 exit
