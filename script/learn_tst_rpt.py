@@ -99,8 +99,8 @@ cross_entropy = tf.reduce_mean(-tf.reduce_sum(yactual * tf.log(yhat), reduction_
 train_step    = tf.train.AdamOptimizer(learning_rate).minimize(cross_entropy)
 # Train
 training_steps_i = 330
-tf.initialize_all_variables().run()
-# tf.global_variables_initializer().run
+#tf.initialize_all_variables().run()
+tf.global_variables_initializer().run()
 for i in range(training_steps_i):
   train_step.run({xvals: x_train_a, yactual: ytrain1h_a})
 prob_a = sess10.run(yhat, feed_dict={xvals: x_test_a})
