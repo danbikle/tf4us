@@ -227,7 +227,7 @@ DEPENDENCIES
   haml
   haml-rails (= 1.0.0)
   jbuilder (~> 2.5)
-  jquery-rails
+  jquery-rails (= 4.2.1)
   listen (~> 3.0.5)
   nokogiri (= 1.8.1)
   pg (~> 0.18)

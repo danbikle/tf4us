@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails_12factor'
 gem 'haml'          
 gem 'haml-rails','1.0.0'
+
 gem 'nokogiri','1.8.1'
 
 gem 'rails', '~> 5.0.0'
