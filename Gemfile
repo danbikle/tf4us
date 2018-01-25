@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 
 gem 'rails_12factor'
 gem 'haml'          
-gem 'haml-rails'    
+gem 'haml-rails','1.0.0'
+gem 'nokogiri','1.8.1'
 
 gem 'rails', '~> 5.0.0'
 
@@ -17,7 +18,7 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'therubyracer', platforms: :ruby
 
-gem 'jquery-rails'
+gem 'jquery-rails','4.2.1'
 
 gem 'turbolinks', '~> 5'
 
